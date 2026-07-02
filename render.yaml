@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: computer-vision-streamlit
+    plan: free
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: UPLOAD_FOLDER
+        value: /tmp/images
+      - key: LOG_FILE
+        value: /tmp/logs/app.log
